@@ -456,7 +456,8 @@ h1 em{color:var(--gold)}
       <ul class="addons">
         <li><div><b>We shop for the gift</b><span>Tell us the budget and what they're into. We buy it, wrap it, and bring it.</span></div><span class="amt">cost of gift + $20</span></li>
         <li><div><b>Extra story</b><span>A third book for the family that never wants story time to end.</span></div><span class="amt">$15</span></li>
-        <li><div><b>Cookies and cocoa</b><span>The elf brings a plate of North Pole cookies and cocoa packets for everyone.</span></div><span class="amt">$25</span></li>
+        <li><div><b>Cookies and cocoa, delivered</b><span>The elf arrives with a plate of ready-to-eat North Pole cookies and cocoa for everyone. No baking, no mess.</span></div><span class="amt">$25</span></li>
+        <li><div><b>Bake Christmas cookies with the elf</b><span>The elf stays an extra 45 minutes and bakes a batch with the kids in your kitchen, aprons, sprinkles and all. She brings the dough and decorating kit; you supply the oven.</span></div><span class="amt">$75</span></li>
         <li><div><b>Christmas Eve week</b><span>The elf's busiest nights, December 19 to 23.</span></div><span class="amt">+$30</span></li>
       </ul>
       <p class="lede" style="font-size:1rem">More than four kids, or a group of families? Write to us and we'll put something together.</p>
@@ -498,6 +499,14 @@ h1 em{color:var(--gold)}
             <label class="chip"><input class="sr" type="radio" name="gift" value="shop" id="g2"><span>Please shop for us</span></label>
           </div>
           <div class="field"><label for="giftText" style="margin-bottom:6px"><small id="giftLabel">What is Santa bringing?</small></label><input type="text" id="giftText" placeholder="A dinosaur dig kit for Jack, a sketchbook for Mia" autocomplete="off"></div>
+        </fieldset>
+        <fieldset>
+          <legend>Add-ons <small style="text-transform:none;letter-spacing:0;font-weight:600;color:var(--muted)">(optional)</small></legend>
+          <div class="chips">
+            <label class="chip"><input class="sr" type="checkbox" name="addon" value="Extra story (+$15)" id="a1"><span>Extra story</span></label>
+            <label class="chip"><input class="sr" type="checkbox" name="addon" value="Cookies and cocoa, delivered (+$25)" id="a2"><span>Cookies &amp; cocoa, delivered</span></label>
+            <label class="chip"><input class="sr" type="checkbox" name="addon" value="Bake Christmas cookies with the elf (+$75)" id="a3"><span>Bake cookies with the elf</span></label>
+          </div>
         </fieldset>
         <div class="field"><label for="notes">Anything the elf should know? <small>(optional)</small></label><textarea id="notes" placeholder="Something they did well this year, a shy one, a dog who loves bells"></textarea></div>
         <div class="fields">
@@ -648,6 +657,8 @@ h1 em{color:var(--gold)}
       'Best timing: '+when+', '+time.toLowerCase()+'.',
       'Stories: '+(p.length?p.join(' and '):'(we are still choosing)')+'.',
       (shop?'Please shop for the gift. ':'We have the gift from Santa. ')+(g?g:'')];
+    var ad=$$('input[name="addon"]:checked',form).map(function(a){return a.value});
+    if(ad.length) lines.push('Add-ons: '+ad.join(', ')+'.');
     if(n) lines.push('For the elf: '+n);
     lines.push('', 'Thank you,', (who||'(your name)')+(em?' · '+em:''));
     var text=lines.join('\n');
