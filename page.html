@@ -1,0 +1,553 @@
+<title>Elf Visit</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,500..800,50;1,9..144,500..800,50&family=Nunito:wght@400;600;700;800&family=Caveat:wght@500;600&display=swap">
+<style>
+/* Layout: a December night in the East Valley. The page opens under a starry desert sky where snow falls
+   (it never does here, which is the point), with saguaros and a string of lights along the bottom. Below
+   the sky, every block is a piece of the visit: the Nice List scroll, a storybook shelf, a gift tag, and a
+   letter to the elves that writes itself as parents fill it in. One committed look; every colour is set. */
+:root{
+  --night:#0C1733; --midnight:#162A5C; --dusk:#24407A;
+  --cream:#FFF6E6; --paper:#FFFBF2; --parchment:#F6E7C8;
+  --red:#C8283A; --red-deep:#9E1B2B; --gold:#E9B949; --gold-deep:#B88A1E;
+  --pine:#1E6B4B; --pine-deep:#124A33; --ink:#2A2118; --muted:#6E6150;
+  --display:"Fraunces","Iowan Old Style",Georgia,serif;
+  --body:"Nunito","Avenir Next","Segoe UI",sans-serif;
+  --hand:"Caveat","Bradley Hand","Segoe Print",cursive;
+  --gut:clamp(18px,4.4vw,56px);
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+[id]{scroll-margin-top:86px}
+[hidden]{display:none!important}
+body{margin:0;background:var(--cream);color:var(--ink);font:400 17px/1.6 var(--body);overflow-x:hidden}
+img,svg,canvas{display:block;max-width:100%}
+img{height:auto}
+a{color:inherit}
+h1,h2,h3,h4,p,ul,ol,fieldset,legend{margin:0;padding:0}
+fieldset{border:0;min-width:0}
+ul,ol{list-style:none}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1140px,100% - 2*var(--gut));margin-inline:auto}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.defs{position:absolute;width:0;height:0;overflow:hidden}
+
+.eyebrow{font-weight:800;font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;color:var(--red)}
+h2{font-family:var(--display);font-weight:700;font-size:clamp(2rem,4.2vw,3.1rem);line-height:1.08;letter-spacing:-.01em;text-wrap:balance}
+h2 em,h1 em{font-style:italic;font-weight:600;color:var(--red)}
+.lede{font-size:1.15rem;color:var(--muted);max-width:40rem;text-wrap:pretty}
+.hand{font-family:var(--hand);font-weight:600;color:var(--red);font-size:1.5rem;line-height:1.1}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;min-height:52px;padding:.7em 1.6em;border-radius:999px;border:0;cursor:pointer;text-decoration:none;
+  background:var(--red);color:#fff;font-weight:800;font-size:1rem;letter-spacing:.01em;box-shadow:0 10px 24px -12px rgba(200,40,58,.8);transition:transform .2s ease,background .2s ease}
+.btn:hover{background:var(--red-deep);transform:translateY(-2px)}
+.btn.gold{background:var(--gold);color:var(--night);box-shadow:0 10px 24px -12px rgba(233,185,73,.9)}
+.btn.gold:hover{background:#F3C95E}
+.btn.ghost{background:transparent;color:inherit;border:2px solid currentColor;box-shadow:none}
+.btn.ghost:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}
+.btn.small{min-height:42px;padding:.45em 1.1em;font-size:.9rem}
+
+/* top bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:var(--night);color:var(--cream);box-shadow:0 1px 0 rgba(255,255,255,.08)}
+.bar-in{display:flex;align-items:center;gap:20px;min-height:68px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--display);font-weight:700;font-size:1.45rem;margin-right:auto}
+.brand svg{width:34px;height:34px}
+.nav{display:flex;gap:clamp(12px,2.2vw,28px)}
+.nav a{text-decoration:none;font-weight:700;font-size:.95rem;opacity:.85;padding:.4em 0;border-bottom:2px solid transparent}
+.nav a:hover{opacity:1;border-color:var(--gold)}
+
+/* sky */
+.sky{position:relative;background:var(--night);color:var(--cream);overflow:hidden;isolation:isolate}
+.sky canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.sky-in{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(28px,5vw,70px);align-items:center;padding-block:clamp(44px,7vw,96px) clamp(150px,22vw,240px)}
+.sky-copy{display:grid;gap:22px;justify-items:start}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(2.7rem,6.2vw,5rem);line-height:1;letter-spacing:-.015em;text-wrap:balance}
+h1 em{color:var(--gold)}
+.sky .lede{color:rgba(255,246,230,.85)}
+.towns{display:flex;flex-wrap:wrap;gap:6px 10px;font-size:.88rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold)}
+.towns li+li::before{content:"·";margin-right:10px;opacity:.6}
+.cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:4px}
+.snow-hint{font-family:var(--hand);font-size:1.35rem;color:rgba(255,246,230,.75);font-weight:500}
+
+/* nice list scroll */
+.scroll{position:relative;justify-self:center;width:min(100%,400px);filter:drop-shadow(0 24px 30px rgba(0,0,0,.45))}
+.scroll-top,.scroll-bot{height:30px;background:linear-gradient(90deg,#D9C39A,#F3E4C2 20%,#E8D5AE 50%,#F3E4C2 80%,#D9C39A);border-radius:16px;box-shadow:inset 0 -6px 10px rgba(0,0,0,.18)}
+.scroll-bot{box-shadow:inset 0 6px 10px rgba(0,0,0,.18)}
+.scroll-body{margin:-8px 14px;background:var(--parchment) repeating-linear-gradient(180deg,transparent 0 33px,rgba(120,90,40,.16) 33px 34px);background-position:0 108px;padding:26px 28px 24px;color:var(--ink);display:grid;gap:10px;min-height:360px;position:relative}
+.scroll-body::before,.scroll-body::after{content:"";position:absolute;inset:0 auto 0 0;width:6px;background:linear-gradient(90deg,rgba(0,0,0,.12),transparent)}
+.scroll-body::after{left:auto;right:0;background:linear-gradient(270deg,rgba(0,0,0,.12),transparent)}
+.scroll-body h2{font-size:2.1rem;text-align:center;color:var(--red-deep)}
+.scroll-body h2 small{display:block;font-family:var(--body);font-weight:800;font-size:.7rem;letter-spacing:.26em;text-transform:uppercase;color:var(--pine);margin-bottom:4px}
+.names{display:grid;gap:0;min-height:170px;align-content:start}
+.names li{font-family:var(--hand);font-weight:600;font-size:1.75rem;line-height:34px;color:#4A2E14;display:flex;align-items:baseline;gap:10px;overflow:hidden}
+.names li span{white-space:nowrap;overflow:hidden;animation:write 1.1s steps(28,end) both}
+.names li i{font-style:normal;color:var(--red);font-size:1.1rem;opacity:0;animation:pop .4s ease 1.1s both}
+.names li.empty{font-size:1.3rem;color:#9A7C52;font-style:italic;animation:none}
+.names li.empty span{animation:none}
+@keyframes write{from{max-width:0}to{max-width:100%}}
+@keyframes pop{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:scale(1)}}
+.name-form{display:flex;gap:8px;margin-top:4px}
+.name-form input{flex:1;min-width:0;min-height:44px;padding:.4em .9em;border-radius:10px;border:1.5px solid #C9AE7A;background:rgba(255,255,255,.55);font-family:var(--hand);font-size:1.35rem;font-weight:600;color:#4A2E14}
+.name-form input::placeholder{color:#B39768;font-weight:500}
+.name-form button{flex:none}
+.scroll-note{font-size:.82rem;color:#8A6E45;text-align:center;line-height:1.4}
+
+/* how it works */
+.how{padding-block:clamp(56px,8vw,100px) clamp(40px,6vw,70px)}
+.how-head{display:grid;gap:12px;justify-items:center;text-align:center;margin-bottom:clamp(30px,5vw,54px)}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,3vw,34px);counter-reset:step}
+.steps li{position:relative;background:var(--paper);border-radius:22px;padding:30px 26px 28px;box-shadow:0 1px 0 rgba(42,33,24,.06),0 20px 40px -30px rgba(42,33,24,.4);display:grid;gap:10px;align-content:start;counter-increment:step}
+.steps li::before{content:counter(step);position:absolute;top:-16px;left:24px;width:40px;height:40px;border-radius:50%;background:var(--red);color:#fff;font-family:var(--display);font-weight:700;font-size:1.2rem;display:grid;place-items:center;box-shadow:0 0 0 5px var(--cream)}
+.steps svg{width:52px;height:52px;margin-bottom:4px}
+.steps h3{font-family:var(--display);font-weight:700;font-size:1.45rem;line-height:1.15}
+.steps p{color:var(--muted)}
+
+/* the visit */
+.visit{background:var(--midnight);color:var(--cream);padding-block:clamp(56px,8vw,100px);position:relative;overflow:hidden}
+.visit::before{content:"";position:absolute;inset:auto 0 0 0;height:8px;background:repeating-linear-gradient(90deg,var(--red) 0 24px,var(--cream) 24px 48px);opacity:.9}
+.visit-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,70px);align-items:center}
+.visit .eyebrow{color:var(--gold)}
+.visit .lede{color:rgba(255,246,230,.8)}
+.visit-copy{display:grid;gap:18px;justify-items:start}
+.timeline{display:grid;gap:0;border-left:2px dashed rgba(233,185,73,.5);margin-left:12px}
+.timeline li{position:relative;padding:0 0 22px 28px}
+.timeline li::before{content:"";position:absolute;left:-8px;top:8px;width:14px;height:14px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px var(--midnight)}
+.timeline b{display:block;font-family:var(--display);font-size:1.2rem;font-weight:700}
+.timeline span{color:rgba(255,246,230,.75)}
+.tag{display:inline-block;background:var(--gold);color:var(--night);font-weight:800;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;padding:.3em .8em;border-radius:999px}
+
+/* bookshelf */
+.books{padding-block:clamp(56px,8vw,100px)}
+.books-head{display:grid;gap:12px;margin-bottom:clamp(26px,4vw,40px);justify-items:start}
+.shelf{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:16px;position:relative;padding-bottom:18px}
+.shelf::after{content:"";position:absolute;left:-14px;right:-14px;bottom:0;height:14px;border-radius:4px;background:linear-gradient(180deg,#8B5A2B,#5C3A18);box-shadow:0 10px 18px -8px rgba(0,0,0,.5)}
+.book{cursor:pointer;display:block}
+.book input{position:absolute;opacity:0;pointer-events:none}
+.book span{display:grid;align-content:space-between;min-height:190px;padding:16px 14px 14px;border-radius:6px 12px 12px 6px;color:#fff;font-family:var(--display);font-weight:700;font-size:1.05rem;line-height:1.15;position:relative;box-shadow:inset 8px 0 0 rgba(0,0,0,.18),0 10px 22px -12px rgba(0,0,0,.6);transition:transform .25s ease}
+.book span::after{content:"";position:absolute;right:10px;top:10px;width:22px;height:22px;border-radius:50%;border:2px solid rgba(255,255,255,.8);background:rgba(255,255,255,.12);transition:background .2s ease}
+.book span small{font-family:var(--body);font-weight:600;font-size:.78rem;opacity:.85}
+.book:hover span{transform:translateY(-6px)}
+.book input:checked+span{transform:translateY(-10px);outline:3px solid var(--gold);outline-offset:3px}
+.book input:checked+span::after{background:var(--gold) center/14px no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230C1733' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 12l5 5 11-11'/%3E%3C/svg%3E");border-color:var(--gold)}
+.book input:focus-visible+span{outline:3px solid var(--gold);outline-offset:3px}
+.book.own span{background:var(--parchment);color:var(--ink);border:2px dashed #C9AE7A;box-shadow:none}
+.book.own span::after{border-color:#C9AE7A}
+.books-note{margin-top:22px;color:var(--muted);font-size:.95rem}
+
+/* pricing */
+.price{background:var(--paper);padding-block:clamp(56px,8vw,100px);border-block:1px solid rgba(42,33,24,.08)}
+.price-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(28px,5vw,70px);align-items:center}
+.gifttag{position:relative;justify-self:center;width:min(100%,380px);background:var(--red);color:#fff;border-radius:18px 18px 18px 60px;padding:38px 34px 34px;box-shadow:0 30px 50px -30px rgba(158,27,43,.9);transform:rotate(-3deg)}
+.gifttag::before{content:"";position:absolute;top:18px;right:18px;width:22px;height:22px;border-radius:50%;background:var(--cream);box-shadow:inset 0 0 0 4px var(--red-deep)}
+.gifttag::after{content:"";position:absolute;top:-70px;right:22px;width:14px;height:80px;border-left:3px solid var(--gold);border-radius:0 0 0 20px;transform:rotate(-18deg);opacity:.9}
+.gifttag .eyebrow{color:var(--gold)}
+.gifttag .amount{font-family:var(--display);font-weight:800;font-size:4rem;line-height:1;margin:6px 0 2px}
+.gifttag .amount sup{font-size:.4em;vertical-align:top;margin-top:.5em;display:inline-block}
+.gifttag ul{display:grid;gap:8px;margin-top:16px;font-weight:600}
+.gifttag li{padding-left:24px;position:relative}
+.gifttag li::before{content:"";position:absolute;left:0;top:.5em;width:12px;height:7px;border-left:2.5px solid var(--gold);border-bottom:2.5px solid var(--gold);transform:rotate(-45deg)}
+.gifttag .hand{color:var(--gold);margin-top:16px;font-size:1.6rem}
+.addons{display:grid;gap:14px}
+.addons li{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid rgba(42,33,24,.1)}
+.addons b{font-family:var(--display);font-size:1.15rem;font-weight:700;display:block}
+.addons span{color:var(--muted);font-size:.95rem}
+.addons .amt{font-family:var(--display);font-weight:700;font-size:1.3rem;white-space:nowrap;color:var(--pine)}
+.price-copy{display:grid;gap:16px}
+
+/* the letter / booking */
+.book-visit{padding-block:clamp(56px,8vw,100px);background:var(--cream)}
+.letter-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,60px);align-items:start}
+.form{display:grid;gap:20px}
+.form legend,.field label{font-weight:800;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--pine);margin-bottom:8px;display:block}
+.field label small{text-transform:none;letter-spacing:0;font-weight:600;color:var(--muted)}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.field{display:grid;gap:0}
+.field input,.field select,.field textarea{width:100%;min-height:50px;padding:.6em .9em;border-radius:12px;border:1.5px solid #D8C7A4;background:var(--paper)}
+.field textarea{resize:vertical;min-height:84px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{cursor:pointer}
+.chip span{display:inline-flex;align-items:center;min-height:44px;padding:.4em 1em;border-radius:999px;border:1.5px solid #D8C7A4;background:var(--paper);font-weight:700;transition:background .2s ease,color .2s ease}
+.chip:hover span{background:var(--parchment)}
+.chip input:checked+span{background:var(--pine);border-color:var(--pine);color:#fff}
+.chip input:focus-visible+span{outline:3px solid var(--gold);outline-offset:2px}
+.letter{background:var(--paper);border-radius:6px;padding:clamp(24px,4vw,40px);box-shadow:0 1px 0 rgba(42,33,24,.08),0 30px 50px -36px rgba(42,33,24,.6);position:sticky;top:90px;background-image:repeating-linear-gradient(180deg,transparent 0 31px,rgba(42,33,24,.08) 31px 32px);background-position:0 68px}
+.letter::before{content:"";position:absolute;top:-10px;left:50%;width:110px;height:26px;transform:translateX(-50%) rotate(-2deg);background:rgba(233,185,73,.55);border-radius:3px}
+.letter-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:22px}
+.letter-head .hand{font-size:1.9rem;color:var(--red-deep)}
+.letter-body{font-family:var(--hand);font-weight:500;font-size:1.45rem;line-height:32px;color:#3B2A14;white-space:pre-wrap;overflow-wrap:anywhere;min-height:224px}
+.letter-body b{font-weight:600;color:var(--red-deep)}
+.send{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.send-note{margin-top:14px;font-size:.92rem;color:var(--muted);line-height:1.5}
+.send-note a{color:var(--pine);font-weight:700}
+
+/* faq */
+.faq{padding-block:clamp(56px,8vw,100px);background:var(--paper)}
+.faq-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(28px,5vw,70px);align-items:start}
+.faq details{border-bottom:1px solid rgba(42,33,24,.12);padding:4px 0}
+.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 0;font-family:var(--display);font-weight:700;font-size:1.25rem}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";flex:none;width:32px;height:32px;border-radius:50%;background:var(--parchment);color:var(--red);display:grid;place-items:center;font-weight:800;transition:transform .25s ease}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding:0 0 18px;color:var(--muted);max-width:52ch}
+
+/* footer */
+.foot{background:var(--night);color:var(--cream);padding-block:40px 36px}
+.foot-in{display:grid;grid-template-columns:minmax(0,1.3fr) repeat(2,minmax(0,.8fr));gap:30px;align-items:start}
+.foot p{color:rgba(255,246,230,.7);max-width:36ch}
+.foot h4{font-weight:800;font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.foot ul{display:grid;gap:8px}
+.foot a{text-decoration:none;opacity:.85}
+.foot a:hover{opacity:1;text-decoration:underline}
+.foot-bottom{margin-top:34px;padding-top:18px;border-top:1px solid rgba(255,255,255,.12);font-size:.85rem;color:rgba(255,246,230,.55);display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+
+@media (max-width:900px){
+  .sky-in,.visit-grid,.price-grid,.letter-grid,.faq-grid{grid-template-columns:minmax(0,1fr)}
+  .steps{grid-template-columns:minmax(0,1fr);row-gap:30px}
+  .letter{position:static}
+  .foot-in{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .gifttag{transform:rotate(0)}
+}
+@media (max-width:700px){.nav{display:none}}
+@media (max-width:560px){
+  .fields{grid-template-columns:minmax(0,1fr)}
+  .foot-in{grid-template-columns:minmax(0,1fr)}
+  .sky-in{padding-bottom:170px}
+  .scroll-body{padding:22px 18px 20px}
+  .names li{font-size:1.5rem}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+<!--BODY-->
+<svg class="defs" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-hat" viewBox="0 0 48 48"><path d="M8 34c6-18 14-26 26-28 4 6 2 12-2 16" fill="#C8283A"/><path d="M8 34c6-18 14-26 26-28-2 10-8 20-12 28z" fill="#9E1B2B" opacity=".5"/><path d="M6 33h30a4 4 0 0 1 0 8H6a4 4 0 0 1 0-8z" fill="#FFF6E6"/><circle cx="35" cy="7" r="5" fill="#E9B949"/></symbol>
+    <symbol id="i-gift" viewBox="0 0 48 48"><rect x="6" y="18" width="36" height="24" rx="4" fill="#C8283A"/><rect x="4" y="12" width="40" height="10" rx="3" fill="#9E1B2B"/><rect x="21" y="12" width="6" height="30" fill="#E9B949"/><path d="M24 12c-4-8-12-8-12-3s8 4 12 3zm0 0c4-8 12-8 12-3s-8 4-12 3z" fill="none" stroke="#E9B949" stroke-width="3"/></symbol>
+    <symbol id="i-book" viewBox="0 0 48 48"><path d="M24 12c-5-4-12-5-18-3v28c6-2 13-1 18 3 5-4 12-5 18-3V9c-6-2-13-1-18 3z" fill="#1E6B4B"/><path d="M24 12v28" stroke="#FFF6E6" stroke-width="2"/><path d="M10 16h9M10 22h9M29 16h9M29 22h9" stroke="#FFF6E6" stroke-width="2" stroke-linecap="round" opacity=".7"/></symbol>
+    <symbol id="i-door" viewBox="0 0 48 48"><rect x="10" y="6" width="28" height="38" rx="3" fill="#8B5A2B"/><rect x="14" y="10" width="20" height="30" rx="2" fill="#B07A3E"/><circle cx="30" cy="26" r="2.4" fill="#E9B949"/><circle cx="24" cy="14" r="6" fill="#1E6B4B"/><circle cx="24" cy="14" r="2" fill="#C8283A"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 1.5C12.6 7.8 16.2 11.4 22.5 12 16.2 12.6 12.6 16.2 12 22.5 11.4 16.2 7.8 12.6 1.5 12 7.8 11.4 11.4 7.8 12 1.5z"/></symbol>
+  </defs>
+</svg>
+
+<header class="bar" id="top">
+  <div class="wrap bar-in">
+    <a class="brand" href="#top"><svg aria-hidden="true"><use href="#i-hat"/></svg>Elf Visit</a>
+    <nav class="nav" aria-label="Primary">
+      <a href="#how">How it works</a><a href="#visit">The visit</a><a href="#books">Stories</a><a href="#price">Pricing</a><a href="#faq">Questions</a>
+    </nav>
+    <a class="btn gold small" href="#book">Book a Visit</a>
+  </div>
+</header>
+
+<main>
+<section class="sky" id="sky">
+  <canvas id="night" aria-hidden="true"></canvas>
+  <div class="wrap sky-in">
+    <div class="sky-copy">
+      <p class="eyebrow" style="color:var(--gold)">Thanksgiving to Christmas Eve · East Valley, Arizona</p>
+      <h1>An elf is coming <em>to your house.</em></h1>
+      <p class="lede">A real elf, straight from the North Pole, at your front door. Two Christmas stories read on your couch, a gift delivered from Santa himself, and a memory your kids will talk about until next December.</p>
+      <ul class="towns" aria-label="Areas served"><li>Gilbert</li><li>Chandler</li><li>Queen Creek</li><li>Mesa</li><li>Scottsdale</li></ul>
+      <div class="cta-row"><a class="btn gold" href="#book">Book a Visit</a><a class="btn ghost" href="#how">How it works</a></div>
+      <p class="snow-hint" id="snowHint">Move your mouse. It's snowing in Arizona tonight.</p>
+    </div>
+    <div class="scroll" id="scroll">
+      <div class="scroll-top"></div>
+      <div class="scroll-body">
+        <h2><small>Official North Pole</small>Nice List</h2>
+        <ol class="names" id="names" aria-live="polite"><li class="empty"><span>Who's on the list this year?</span></li></ol>
+        <form class="name-form" id="nameForm" novalidate>
+          <label class="sr" for="nameIn">Child's name</label>
+          <input type="text" id="nameIn" maxlength="24" placeholder="Add a name" autocomplete="off">
+          <button class="btn small" type="submit">Add</button>
+        </form>
+        <p class="scroll-note">Names you add here fill in your booking below. Nothing is sent until you say so.</p>
+      </div>
+      <div class="scroll-bot"></div>
+    </div>
+  </div>
+</section>
+
+<section class="how wrap" id="how">
+  <div class="how-head">
+    <p class="eyebrow">How it works</p>
+    <h2>Three steps to a <em>knock at the door.</em></h2>
+  </div>
+  <ol class="steps">
+    <li><svg aria-hidden="true"><use href="#i-gift"/></svg><h3>You tell us about your kids and the gift</h3><p>Pick a date window, add names and ages, and tell us what Santa is bringing. Hand us the gift, or set a budget and we'll shop and wrap it.</p></li>
+    <li><svg aria-hidden="true"><use href="#i-book"/></svg><h3>You choose the stories</h3><p>Pick two favorites from our shelf, or leave your own books by the door. The elf will know the kids' names, and a couple of things they've done well this year.</p></li>
+    <li><svg aria-hidden="true"><use href="#i-door"/></svg><h3>The elf arrives</h3><p>A knock, a jingle, and a very excited elf. Stories on the couch, a gift from Santa with a note, a photo with the family, and off to the next house.</p></li>
+  </ol>
+</section>
+
+<section class="visit" id="visit">
+  <div class="wrap visit-grid">
+    <div class="visit-copy">
+      <p class="eyebrow">The visit</p>
+      <h2>Twenty-five minutes of <em style="color:var(--gold)">pure wonder.</em></h2>
+      <p class="lede">Modeled on the beloved elf visits families line up for in Sunriver, Oregon, and brought home to the East Valley.</p>
+      <span class="tag">Ages 2 to 10 love it most</span>
+    </div>
+    <ol class="timeline">
+      <li><b>The knock</b><span>Bells first, then a knock. The elf asks for the kids by name and explains that Santa sent them down early.</span></li>
+      <li><b>Story time</b><span>Two Christmas books, read with all the voices, with the kids gathered close on the couch or the rug.</span></li>
+      <li><b>A gift from Santa</b><span>Wrapped at the North Pole, with a handwritten note from Santa mentioning something they did well this year.</span></li>
+      <li><b>The photo</b><span>Elf and family together by the tree. We'll take it on your phone so it's yours right away.</span></li>
+      <li><b>Goodbye, until next year</b><span>A reminder to be in bed early on Christmas Eve, a wave from the driveway, and gone.</span></li>
+    </ol>
+  </div>
+</section>
+
+<section class="books wrap" id="books">
+  <div class="books-head">
+    <p class="eyebrow">Story time</p>
+    <h2>Pick two from <em>the elf's shelf.</em></h2>
+    <p class="lede">Tap your two favorites and they'll go on your booking. Or choose "our own books" and leave yours by the door.</p>
+  </div>
+  <div class="shelf" id="shelf">
+    <label class="book"><input type="checkbox" name="book" value="'Twas the Night Before Christmas"><span style="background:#C8283A">'Twas the Night Before Christmas<small>Clement C. Moore</small></span></label>
+    <label class="book"><input type="checkbox" name="book" value="The Polar Express"><span style="background:#162A5C">The Polar Express<small>Chris Van Allsburg</small></span></label>
+    <label class="book"><input type="checkbox" name="book" value="How the Grinch Stole Christmas!"><span style="background:#1E6B4B">How the Grinch Stole Christmas!<small>Dr. Seuss</small></span></label>
+    <label class="book"><input type="checkbox" name="book" value="The Snowy Day"><span style="background:#B88A1E">The Snowy Day<small>Ezra Jack Keats</small></span></label>
+    <label class="book"><input type="checkbox" name="book" value="Snowmen at Night"><span style="background:#24407A">Snowmen at Night<small>Caralyn Buehner</small></span></label>
+    <label class="book"><input type="checkbox" name="book" value="Bear Stays Up for Christmas"><span style="background:#7A4A22">Bear Stays Up for Christmas<small>Karma Wilson</small></span></label>
+    <label class="book"><input type="checkbox" name="book" value="Little Blue Truck's Christmas"><span style="background:#2F7FA8">Little Blue Truck's Christmas<small>Alice Schertle</small></span></label>
+    <label class="book"><input type="checkbox" name="book" value="Pete the Cat Saves Christmas"><span style="background:#9E1B2B">Pete the Cat Saves Christmas<small>Eric Litwin</small></span></label>
+    <label class="book"><input type="checkbox" name="book" value="Llama Llama Holiday Drama"><span style="background:#5B3F8A">Llama Llama Holiday Drama<small>Anna Dewdney</small></span></label>
+    <label class="book"><input type="checkbox" name="book" value="Dream Snow"><span style="background:#2E6E5E">Dream Snow<small>Eric Carle</small></span></label>
+    <label class="book"><input type="checkbox" name="book" value="Olive, the Other Reindeer"><span style="background:#C96A2B">Olive, the Other Reindeer<small>Vivian Walsh</small></span></label>
+    <label class="book own"><input type="checkbox" name="book" value="Our own books"><span>We'll leave our own books by the door<small>Any two you love</small></span></label>
+  </div>
+  <p class="books-note" id="booksNote">Choose up to two.</p>
+</section>
+
+<section class="price" id="price">
+  <div class="wrap price-grid">
+    <div class="gifttag" aria-label="Pricing">
+      <p class="eyebrow">The Elf Visit</p>
+      <p class="amount"><sup>$</sup>149</p>
+      <p style="font-weight:700;opacity:.9">per household, up to four kids</p>
+      <ul>
+        <li>A 25-minute visit from a North Pole elf</li>
+        <li>Two Christmas stories, read aloud</li>
+        <li>Your gift wrapped and delivered from Santa, with a handwritten note</li>
+        <li>Family photo on your phone</li>
+        <li>Gilbert, Chandler, Queen Creek, Mesa and Scottsdale</li>
+      </ul>
+      <p class="hand">Weeknights &amp; weekends, Thanksgiving to Dec 23</p>
+    </div>
+    <div class="price-copy">
+      <p class="eyebrow">Add-ons</p>
+      <h2>Make it <em>even bigger.</em></h2>
+      <ul class="addons">
+        <li><div><b>We shop for the gift</b><span>Tell us the budget and what they're into. We buy it, wrap it, and bring it.</span></div><span class="amt">cost of gift + $20</span></li>
+        <li><div><b>Extra story</b><span>A third book for the family that never wants story time to end.</span></div><span class="amt">$15</span></li>
+        <li><div><b>Cookies and cocoa</b><span>The elf brings a plate of North Pole cookies and cocoa packets for everyone.</span></div><span class="amt">$25</span></li>
+        <li><div><b>Christmas Eve week</b><span>The elf's busiest nights, December 19 to 23.</span></div><span class="amt">+$30</span></li>
+      </ul>
+      <p class="lede" style="font-size:1rem">More than four kids, or a group of families? Write to us and we'll put something together.</p>
+    </div>
+  </div>
+</section>
+
+<section class="book-visit" id="book">
+  <div class="wrap">
+    <div class="how-head" style="justify-items:start;text-align:left">
+      <p class="eyebrow">Book a visit</p>
+      <h2>Write to <em>the elves.</em></h2>
+      <p class="lede">Fill in what you can. Your letter writes itself on the right, and we'll answer within a day to confirm a date and time.</p>
+    </div>
+    <form class="letter-grid" id="bookForm" novalidate>
+      <div class="form">
+        <fieldset>
+          <legend>Who's on the list?</legend>
+          <div class="field"><label for="kids" style="margin-bottom:6px"><small>Names and ages, e.g. "Mia 6, Jack 4"</small></label><input type="text" id="kids" placeholder="Mia 6, Jack 4" autocomplete="off"></div>
+        </fieldset>
+        <fieldset>
+          <legend>When works?</legend>
+          <div class="chips">
+            <label class="chip"><input class="sr" type="radio" name="when" value="Thanksgiving weekend" id="w1"><span>Thanksgiving weekend</span></label>
+            <label class="chip"><input class="sr" type="radio" name="when" value="Early December" id="w2" checked><span>Early December</span></label>
+            <label class="chip"><input class="sr" type="radio" name="when" value="Mid December" id="w3"><span>Mid December</span></label>
+            <label class="chip"><input class="sr" type="radio" name="when" value="Christmas Eve week (Dec 19 to 23)" id="w4"><span>Dec 19 to 23</span></label>
+          </div>
+        </fieldset>
+        <div class="fields">
+          <div class="field"><label for="town">Your town</label><select id="town"><option>Gilbert</option><option>Chandler</option><option>Queen Creek</option><option>Mesa</option><option>Scottsdale</option><option>Somewhere nearby</option></select></div>
+          <div class="field"><label for="time">Best time of day</label><select id="time"><option>Early evening (5 to 7)</option><option>After dinner (7 to 8:30)</option><option>Weekend afternoon</option><option>Flexible</option></select></div>
+        </div>
+        <fieldset>
+          <legend>The gift from Santa</legend>
+          <div class="chips" style="margin-bottom:12px">
+            <label class="chip"><input class="sr" type="radio" name="gift" value="have" id="g1" checked><span>We have the gift</span></label>
+            <label class="chip"><input class="sr" type="radio" name="gift" value="shop" id="g2"><span>Please shop for us</span></label>
+          </div>
+          <div class="field"><label for="giftText" style="margin-bottom:6px"><small id="giftLabel">What is Santa bringing?</small></label><input type="text" id="giftText" placeholder="A dinosaur dig kit for Jack, a sketchbook for Mia" autocomplete="off"></div>
+        </fieldset>
+        <div class="field"><label for="notes">Anything the elf should know? <small>(optional)</small></label><textarea id="notes" placeholder="Something they did well this year, a shy one, a dog who loves bells"></textarea></div>
+        <div class="fields">
+          <div class="field"><label for="parent">Your name</label><input type="text" id="parent" autocomplete="name"></div>
+          <div class="field"><label for="email">Your email</label><input type="email" id="email" autocomplete="email" placeholder="So we can confirm the date"></div>
+        </div>
+      </div>
+      <div class="letter">
+        <div class="letter-head"><p class="hand">Dear Elves,</p><svg width="28" height="28" aria-hidden="true" style="color:var(--gold)"><use href="#i-star" fill="currentColor"/></svg></div>
+        <div class="letter-body" id="letterBody"></div>
+        <div class="send">
+          <a class="btn" id="sendMail" href="mailto:hello@elfvisit.com">Send the Letter</a>
+          <button class="btn ghost" id="copyLetter" type="button" style="color:var(--ink)">Copy it</button>
+        </div>
+        <p class="send-note" id="sendNote">"Send the Letter" opens your email app with this letter ready to go to <a href="mailto:hello@elfvisit.com">hello@elfvisit.com</a>. Nothing is sent until you press send.</p>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="wrap faq-grid">
+    <div>
+      <p class="eyebrow">Questions</p>
+      <h2>Things parents <em>ask us.</em></h2>
+    </div>
+    <div>
+      <details open><summary>Will my kids believe it?</summary><p>That's the whole job. The elf arrives in full North Pole gear, knows the kids by name, and never breaks character. For the believers it's magic; for the older skeptics it's still a very fun evening.</p></details>
+      <details><summary>How does the gift work?</summary><p>Most parents hand us the gift at the door (or leave it in a bag on the porch) a few minutes before the visit. We wrap it in North Pole paper and the elf delivers it with a note from Santa. If you'd rather we shop, give us a budget and a few hints.</p></details>
+      <details><summary>What if my child is shy, or cries?</summary><p>It happens, especially with the littlest ones. Our elves are patient and good at reading the room. They'll slow down, sit on the floor, and let the kids come to them. The stories usually do the rest.</p></details>
+      <details><summary>Where do you go?</summary><p>Gilbert, Chandler, Queen Creek, Mesa and Scottsdale. If you're just outside those, write to us anyway and we'll see what the sleigh can do.</p></details>
+      <details><summary>Can we book for a party or several families?</summary><p>Yes. Tell us how many kids and we'll quote a longer visit with more stories and a gift for each child.</p></details>
+      <details><summary>What about the dog?</summary><p>The elf loves dogs. If yours loves strangers with bells on, great. If not, a few minutes in another room keeps story time calm.</p></details>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <div>
+      <a class="brand" href="#top" style="margin-bottom:14px"><svg aria-hidden="true"><use href="#i-hat"/></svg>Elf Visit</a>
+      <p>Elf visits for families in Gilbert, Chandler, Queen Creek, Mesa and Scottsdale, Arizona. Thanksgiving to Christmas Eve.</p>
+    </div>
+    <div><h4>Visit</h4><ul><li><a href="#how">How it works</a></li><li><a href="#visit">The visit</a></li><li><a href="#books">Stories</a></li><li><a href="#price">Pricing</a></li></ul></div>
+    <div><h4>Say hello</h4><ul><li><a href="mailto:hello@elfvisit.com">hello@elfvisit.com</a></li><li><a href="#book">Book a visit</a></li><li><a href="#faq">Questions</a></li></ul></div>
+  </div>
+  <div class="wrap foot-bottom"><span>© 2026 Elf Visit · Gilbert, Arizona</span><span>Snow not guaranteed outside this website.</span></div>
+</footer>
+
+<script>
+(function(){
+  var $=function(s,r){return (r||document).querySelector(s)}, $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+  var calm=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var EMAIL='hello@elfvisit.com';
+
+  /* ---- the night sky: stars, string lights, saguaros, and snow that follows the pointer ---- */
+  var sky=$('#sky'), cv=$('#night'), ctx=cv.getContext('2d'), W=0,H=0,dpr=1, stars=[], flakes=[], cacti=[], px=-1,py=-1, raf=0, t0=0, hintShown=false;
+  function rnd(seed){return function(){seed=(seed*16807)%2147483647;return (seed-1)/2147483646}}
+  function size(){
+    var r=sky.getBoundingClientRect(); dpr=Math.min(window.devicePixelRatio||1,2); W=r.width; H=r.height;
+    cv.width=Math.round(W*dpr); cv.height=Math.round(H*dpr); ctx.setTransform(dpr,0,0,dpr,0,0);
+    var R=rnd(20261225); stars=[]; for(var i=0;i<Math.round(W*H/5200);i++) stars.push({x:R()*W,y:R()*H*.78,r:.5+R()*1.4,p:R()*6.28,s:.6+R()*1.6});
+    cacti=[]; var n=Math.max(4,Math.round(W/190));
+    for(var k=0;k<n;k++){ var x=(k+.5)/n*W+(R()-.5)*W/n*.7; cacti.push({x:x,h:H*(.13+R()*.13),w:11+R()*7,arms:[R()>.3,R()>.45],al:[.3+R()*.3,.3+R()*.3],ah:[.4+R()*.3,.45+R()*.3],d:R()}); }
+    cacti.sort(function(a,b){return a.d-b.d});
+    draw(0);
+  }
+  function cactus(c,color){
+    var baseY=H-16, top=baseY-c.h, w=c.w;
+    ctx.fillStyle=color;
+    rr(c.x-w/2,top,w,c.h+16,w/2);
+    for(var s=0;s<2;s++){ if(!c.arms[s])continue; var dir=s?1:-1, ay=baseY-c.h*c.ah[s], ax=c.x+dir*(w/2), aw=w*.72, len=w*1.6;
+      rr(Math.min(ax,ax+dir*len),ay-aw/2,len,aw,aw/2);
+      var ex=ax+dir*len, up=c.h*c.al[s];
+      rr(ex-aw/2+(dir>0?0:0),ay-up,aw,up+aw/2,aw/2); }
+  }
+  function rr(x,y,w,h,r){ctx.beginPath(); ctx.roundRect?ctx.roundRect(x,y,w,h,r):ctx.rect(x,y,w,h); ctx.fill()}
+  function draw(time){
+    var t=time/1000;
+    var g=ctx.createLinearGradient(0,0,0,H); g.addColorStop(0,'#0A1230'); g.addColorStop(.6,'#122253'); g.addColorStop(1,'#1E3A7A');
+    ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
+    /* moon */
+    ctx.save(); ctx.globalAlpha=.9; ctx.beginPath(); ctx.arc(W*.86,H*.16,Math.min(W,H)*.045,0,6.283); ctx.fillStyle='#FFF1C9'; ctx.shadowColor='rgba(255,241,201,.8)'; ctx.shadowBlur=40; ctx.fill(); ctx.restore();
+    /* stars */
+    for(var i=0;i<stars.length;i++){var s=stars[i], a=.45+.55*Math.abs(Math.sin(t*s.s+s.p)); ctx.globalAlpha=calm?.75:a; ctx.fillStyle='#FFF6E6'; ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,6.283); ctx.fill();}
+    ctx.globalAlpha=1;
+    /* far mesas */
+    ctx.fillStyle='#0E1B40'; ctx.beginPath(); ctx.moveTo(0,H*.82);
+    for(var x=0;x<=W;x+=W/14){ctx.lineTo(x,H*(.78+.03*Math.sin(x/W*9+1)+.02*Math.sin(x/W*23)));} ctx.lineTo(W,H); ctx.lineTo(0,H); ctx.fill();
+    /* string of lights */
+    var sag=28, bulbs=['#C8283A','#E9B949','#1E6B4B','#FFF6E6','#2F7FA8']; ctx.strokeStyle='rgba(0,0,0,.55)'; ctx.lineWidth=2; ctx.beginPath();
+    var segs=Math.max(3,Math.round(W/260));
+    for(var s2=0;s2<segs;s2++){var x0=s2/segs*W,x1=(s2+1)/segs*W; ctx.moveTo(x0,H*.72); ctx.quadraticCurveTo((x0+x1)/2,H*.72+sag*2,x1,H*.72);}
+    ctx.stroke();
+    var nb=Math.round(W/46);
+    for(var b=0;b<=nb;b++){var u=b/nb, seg=Math.min(segs-1,Math.floor(u*segs)), lu=u*segs-seg, bx=u*W, by=H*.72+sag*2*lu*(1-lu)*2*.5+ (4*lu*(1-lu))*sag*.5;
+      var col=bulbs[b%bulbs.length], gl=calm?.8:.6+.4*Math.abs(Math.sin(t*2+b*.9));
+      ctx.save(); ctx.globalAlpha=gl; ctx.shadowColor=col; ctx.shadowBlur=14; ctx.fillStyle=col; ctx.beginPath(); ctx.ellipse(bx,by+8,4,6,0,0,6.283); ctx.fill(); ctx.restore();}
+    /* saguaros */
+    for(var c=0;c<cacti.length;c++) cactus(cacti[c], c<cacti.length/2?'#0B1838':'#07112B');
+    /* ground snow */
+    var sg=ctx.createLinearGradient(0,H-26,0,H); sg.addColorStop(0,'rgba(255,255,255,0)'); sg.addColorStop(1,'rgba(255,255,255,.55)'); ctx.fillStyle=sg; ctx.fillRect(0,H-26,W,26);
+    /* snow */
+    ctx.fillStyle='#FFFFFF';
+    for(var f=flakes.length-1;f>=0;f--){var k=flakes[f]; ctx.globalAlpha=k.a; ctx.beginPath(); ctx.arc(k.x,k.y,k.r,0,6.283); ctx.fill();}
+    ctx.globalAlpha=1;
+  }
+  function step(time){
+    if(!t0)t0=time; var dt=Math.min(.05,(time-(step.prev||time))/1000); step.prev=time;
+    var ambient=W*H/900000;
+    for(var i=0;i<ambient;i++) if(Math.random()<.5) flakes.push({x:Math.random()*W,y:-6,r:1+Math.random()*2.2,vy:18+Math.random()*30,vx:(Math.random()-.5)*14,a:.45+Math.random()*.5,w:Math.random()*6.28});
+    if(px>=0){ if(Math.random()<.6) flakes.push({x:px+(Math.random()-.5)*160,y:py-20+(Math.random()-.5)*60,r:1.2+Math.random()*2.4,vy:26+Math.random()*44,vx:(Math.random()-.5)*26,a:.5+Math.random()*.45,w:Math.random()*6.28}); }
+    for(var f=flakes.length-1;f>=0;f--){var k=flakes[f]; k.w+=dt*2; k.x+=(k.vx+Math.sin(k.w)*12)*dt; k.y+=k.vy*dt; if(k.y>H+8||k.x<-10||k.x>W+10)flakes.splice(f,1);}
+    if(flakes.length>900)flakes.splice(0,flakes.length-900);
+    draw(time); raf=requestAnimationFrame(step);
+  }
+  sky.addEventListener('pointermove',function(e){var r=sky.getBoundingClientRect(); px=e.clientX-r.left; py=e.clientY-r.top; if(!hintShown){hintShown=true; $('#snowHint').textContent='There it is. Snow in the desert.';}});
+  sky.addEventListener('pointerleave',function(){px=-1;py=-1});
+  size(); window.addEventListener('resize',function(){clearTimeout(size.t); size.t=setTimeout(size,150)});
+  if(!calm) raf=requestAnimationFrame(step);
+  if('IntersectionObserver' in window && !calm) new IntersectionObserver(function(es){ if(es[0].isIntersecting){ if(!raf) raf=requestAnimationFrame(step);} else { cancelAnimationFrame(raf); raf=0; step.prev=0; } }).observe(sky);
+
+  /* ---- the Nice List ---- */
+  var names=[], list=$('#names'), nameForm=$('#nameForm'), nameIn=$('#nameIn'), kids=$('#kids');
+  function renderNames(){
+    list.innerHTML='';
+    if(!names.length){ list.innerHTML='<li class="empty"><span>Who\'s on the list this year?</span></li>'; return; }
+    names.forEach(function(n,i){ var li=document.createElement('li'); li.innerHTML='<span></span><i>&#10003;</i>'; li.firstChild.textContent=(i+1)+'. '+n; if(i<names.length-1){li.firstChild.style.animation='none'; li.lastChild.style.animation='none'; li.lastChild.style.opacity=1;} list.appendChild(li); });
+  }
+  nameForm.addEventListener('submit',function(e){ e.preventDefault(); var v=nameIn.value.replace(/\s+/g,' ').trim(); if(!v||names.length>=6){nameIn.focus();return;} names.push(v); nameIn.value=''; renderNames(); if(!kids.value.trim()||kids.value.indexOf(names[0])===0) kids.value=names.join(', '); compose(); });
+
+  /* ---- the bookshelf: up to two ---- */
+  var shelf=$('#shelf'), booksNote=$('#booksNote');
+  function picked(){return $$('input[name="book"]:checked',shelf).map(function(b){return b.value})}
+  shelf.addEventListener('change',function(e){ var p=picked(); if(p.length>2){ e.target.checked=false; p=picked(); } booksNote.textContent=p.length?('Picked: '+p.join(' and ')+(p.length<2?'. One more?':'.')):'Choose up to two.'; compose(); });
+
+  /* ---- the letter ---- */
+  var form=$('#bookForm'), body=$('#letterBody'), sendMail=$('#sendMail'), copyBtn=$('#copyLetter'), note=$('#sendNote'), giftLabel=$('#giftLabel'), giftText=$('#giftText');
+  function val(id){return ($('#'+id).value||'').trim()}
+  function radio(n){var el=$('input[name="'+n+'"]:checked',form); return el?el.value:''}
+  function compose(){
+    var shop=radio('gift')==='shop';
+    giftLabel.textContent=shop?'Budget, and what they are into':'What is Santa bringing?';
+    giftText.placeholder=shop?'About $40 each. Dinosaurs for Jack, drawing for Mia.':'A dinosaur dig kit for Jack, a sketchbook for Mia';
+    var k=val('kids')||'(our kids)', when=radio('when'), town=val('town'), time=val('time'), p=picked(), g=val('giftText'), n=val('notes'), who=val('parent'), em=val('email');
+    var lines=['We would love an elf visit for '+k+' in '+town+'.',
+      'Best timing: '+when+', '+time.toLowerCase()+'.',
+      'Stories: '+(p.length?p.join(' and '):'(we are still choosing)')+'.',
+      (shop?'Please shop for the gift. ':'We have the gift from Santa. ')+(g?g:'')];
+    if(n) lines.push('For the elf: '+n);
+    lines.push('', 'Thank you,', (who||'(your name)')+(em?' · '+em:''));
+    var text=lines.join('\n');
+    body.innerHTML=''; lines.forEach(function(l,i){ var d=document.createElement('div'); if(i===0){ d.innerHTML='We would love an elf visit for <b></b> in <b></b>.'; d.children[0].textContent=k; d.children[1].textContent=town; } else d.textContent=l||' '; body.appendChild(d); });
+    sendMail.href='mailto:'+EMAIL+'?subject='+encodeURIComponent('Elf visit for '+k)+'&body='+encodeURIComponent('Dear Elves,\r\n\r\n'+text.replace(/\n/g,'\r\n'));
+    return 'Dear Elves,\n\n'+text;
+  }
+  form.addEventListener('input',compose); form.addEventListener('change',compose); form.addEventListener('submit',function(e){e.preventDefault()});
+  compose();
+  copyBtn.addEventListener('click',function(){ var text=compose(); var ok=function(d){ note.textContent=d?'Copied. Paste it into an email to '+EMAIL+'.':'The letter is selected. Copy it, then email it to '+EMAIL+'.'; };
+    var fb=function(){ var r=document.createRange(); r.selectNodeContents(body); var s=window.getSelection(); s.removeAllRanges(); s.addRange(r); ok(false); };
+    if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(function(){ok(true)},fb); else fb(); });
+  sendMail.addEventListener('click',function(){ note.textContent='Your email app should open with the letter ready to send. If nothing opened, copy it and email '+EMAIL+'.'; });
+})();
+</script>
