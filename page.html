@@ -65,8 +65,7 @@ h2 em,h1 em{font-style:italic;font-weight:600;color:var(--red)}
 h1{font-family:var(--display);font-weight:800;font-size:clamp(2.7rem,6.2vw,5rem);line-height:1;letter-spacing:-.015em;text-wrap:balance}
 h1 em{color:var(--gold)}
 .sky .lede{color:rgba(255,246,230,.85)}
-.towns{display:flex;flex-wrap:wrap;gap:6px 10px;font-size:.88rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold)}
-.towns li+li::before{content:"·";margin-right:10px;opacity:.6}
+.towns{font-size:.88rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}
 .cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:4px}
 .snow-hint{font-family:var(--hand);font-size:1.35rem;color:rgba(255,246,230,.75);font-weight:500}
 
@@ -134,6 +133,19 @@ h1 em{color:var(--gold)}
 .book.own span{background:var(--parchment);color:var(--ink);border:2px dashed #C9AE7A;box-shadow:none}
 .book.own span::after{border-color:#C9AE7A}
 .books-note{margin-top:22px;color:var(--muted);font-size:.95rem}
+
+
+/* storybook: three illustrated scenes of the evening */
+.story{padding-block:clamp(56px,8vw,100px);background:var(--paper);border-top:1px solid rgba(42,33,24,.08)}
+.story-head{display:grid;gap:12px;justify-items:center;text-align:center;margin-bottom:clamp(26px,4vw,44px)}
+.pages{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,3vw,36px);align-items:start}
+.page{background:#fff;padding:14px 14px 18px;border-radius:6px;box-shadow:0 1px 0 rgba(42,33,24,.08),0 24px 40px -28px rgba(42,33,24,.55);transform:rotate(var(--tilt,0));transition:transform .3s ease}
+.page:hover{transform:rotate(0) translateY(-6px)}
+.page svg{width:100%;aspect-ratio:4/3;border-radius:4px;background:#1B2A55}
+.page figcaption{display:grid;gap:2px;padding:12px 4px 0}
+.page figcaption b{font-family:var(--display);font-weight:700;font-size:1.2rem}
+.page figcaption span{font-family:var(--hand);font-size:1.3rem;color:var(--red);line-height:1.15}
+@media (max-width:900px){.pages{grid-template-columns:minmax(0,1fr);max-width:480px;margin-inline:auto}.page{--tilt:0!important}}
 
 /* pricing */
 .price{background:var(--paper);padding-block:clamp(56px,8vw,100px);border-block:1px solid rgba(42,33,24,.08)}
@@ -228,6 +240,30 @@ h1 em{color:var(--gold)}
     <symbol id="i-gift" viewBox="0 0 48 48"><rect x="6" y="18" width="36" height="24" rx="4" fill="#C8283A"/><rect x="4" y="12" width="40" height="10" rx="3" fill="#9E1B2B"/><rect x="21" y="12" width="6" height="30" fill="#E9B949"/><path d="M24 12c-4-8-12-8-12-3s8 4 12 3zm0 0c4-8 12-8 12-3s-8 4-12 3z" fill="none" stroke="#E9B949" stroke-width="3"/></symbol>
     <symbol id="i-book" viewBox="0 0 48 48"><path d="M24 12c-5-4-12-5-18-3v28c6-2 13-1 18 3 5-4 12-5 18-3V9c-6-2-13-1-18 3z" fill="#1E6B4B"/><path d="M24 12v28" stroke="#FFF6E6" stroke-width="2"/><path d="M10 16h9M10 22h9M29 16h9M29 22h9" stroke="#FFF6E6" stroke-width="2" stroke-linecap="round" opacity=".7"/></symbol>
     <symbol id="i-door" viewBox="0 0 48 48"><rect x="10" y="6" width="28" height="38" rx="3" fill="#8B5A2B"/><rect x="14" y="10" width="20" height="30" rx="2" fill="#B07A3E"/><circle cx="30" cy="26" r="2.4" fill="#E9B949"/><circle cx="24" cy="14" r="6" fill="#1E6B4B"/><circle cx="24" cy="14" r="2" fill="#C8283A"/></symbol>
+    <symbol id="elf" viewBox="0 0 100 160">
+      <path d="M38 158c-10 2-18-2-16-8l6-10h18z" fill="#C8283A"/><path d="M62 158c10 2 18-2 16-8l-6-10H54z" fill="#C8283A"/>
+      <rect x="30" y="96" width="16" height="48" rx="7" fill="#C8283A"/><rect x="54" y="96" width="16" height="48" rx="7" fill="#C8283A"/>
+      <path d="M26 100c0-16 10-40 24-40s24 24 24 40l-3 4H29z" fill="#1E6B4B"/>
+      <path d="M50 62l-12 10 12 24 12-24z" fill="#124A33"/><path d="M28 70l22-6 22 6-5 6-17-4-17 4z" fill="#C8283A"/>
+      <path d="M12 118c-4-6 4-28 16-40l6 8c-10 8-14 20-12 30z" fill="#1E6B4B"/><path d="M88 118c4-6-4-28-16-40l-6 8c10 8 14 20 12 30z" fill="#1E6B4B"/>
+      <circle cx="12" cy="122" r="5" fill="#F3C7A6"/><circle cx="88" cy="122" r="5" fill="#F3C7A6"/>
+      <path d="M30 46c0-18 8-30 20-30s20 12 20 30c0 10-8 16-20 16S30 56 30 46z" fill="#F6D7A0"/>
+      <ellipse cx="50" cy="40" rx="13" ry="15" fill="#F8D5BC"/>
+      <path d="M36 36c2-10 8-14 14-14s12 4 14 14c-4-3-9-4-14-4s-10 1-14 4z" fill="#F2C55A"/>
+      <path d="M32 44c-2 8 0 16 4 20M68 44c2 8 0 16-4 20" stroke="#F2C55A" stroke-width="6" stroke-linecap="round" fill="none"/>
+      <circle cx="45" cy="40" r="1.6" fill="#2A2118"/><circle cx="55" cy="40" r="1.6" fill="#2A2118"/><path d="M45 47q5 4 10 0" stroke="#B5443B" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+      <circle cx="41" cy="45" r="2.2" fill="#F2A7A0" opacity=".7"/><circle cx="59" cy="45" r="2.2" fill="#F2A7A0" opacity=".7"/>
+      <path d="M30 28c2-14 14-26 30-22 6 2 14 8 14 20 0 0-10-8-18-6-12 2-26 8-26 8z" fill="#C8283A"/><path d="M58 8c8-6 18-8 24-2-8 2-14 6-18 14z" fill="#C8283A"/><circle cx="82" cy="6" r="4" fill="#E9B949"/>
+      <path d="M30 26l40-4 4 6-44 4z" fill="#1E6B4B"/>
+    </symbol>
+    <symbol id="kid" viewBox="0 0 60 90">
+      <rect x="16" y="40" width="28" height="36" rx="10" fill="currentColor"/>
+      <rect x="18" y="68" width="10" height="20" rx="5" fill="currentColor"/><rect x="32" y="68" width="10" height="20" rx="5" fill="currentColor"/>
+      <circle cx="30" cy="26" r="15" fill="#F8D5BC"/>
+      <circle cx="25" cy="25" r="1.5" fill="#2A2118"/><circle cx="35" cy="25" r="1.5" fill="#2A2118"/><path d="M25 31q5 4 10 0" stroke="#B5443B" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    </symbol>
+    <pattern id="dots" width="8" height="8" patternUnits="userSpaceOnUse"><circle cx="4" cy="4" r="1.6" fill="#fff" opacity=".9"/></pattern>
+    <pattern id="plaid" width="10" height="10" patternUnits="userSpaceOnUse"><rect width="10" height="10" fill="#C8283A"/><path d="M0 5h10M5 0v10" stroke="#2A2118" stroke-width="2.5" opacity=".6"/></pattern>
     <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 1.5C12.6 7.8 16.2 11.4 22.5 12 16.2 12.6 12.6 16.2 12 22.5 11.4 16.2 7.8 12.6 1.5 12 7.8 11.4 11.4 7.8 12 1.5z"/></symbol>
   </defs>
 </svg>
@@ -250,7 +286,7 @@ h1 em{color:var(--gold)}
       <p class="eyebrow" style="color:var(--gold)">Thanksgiving to Christmas Eve · East Valley, Arizona</p>
       <h1>An elf is coming <em>to your house.</em></h1>
       <p class="lede">A real elf, straight from the North Pole, at your front door. Two Christmas stories read on your couch, a gift delivered from Santa himself, and a memory your kids will talk about until next December.</p>
-      <ul class="towns" aria-label="Areas served"><li>Gilbert</li><li>Chandler</li><li>Queen Creek</li><li>Mesa</li><li>Scottsdale</li></ul>
+      <p class="towns">Serving families across the East Valley</p>
       <div class="cta-row"><a class="btn gold" href="#book">Book a Visit</a><a class="btn ghost" href="#how">How it works</a></div>
       <p class="snow-hint" id="snowHint">Move your mouse. It's snowing in Arizona tonight.</p>
     </div>
@@ -288,8 +324,8 @@ h1 em{color:var(--gold)}
     <div class="visit-copy">
       <p class="eyebrow">The visit</p>
       <h2>Twenty-five minutes of <em style="color:var(--gold)">pure wonder.</em></h2>
-      <p class="lede">Modeled on the beloved elf visits families line up for in Sunriver, Oregon, and brought home to the East Valley.</p>
-      <span class="tag">Ages 2 to 10 love it most</span>
+      <p class="lede">Your elf is a petite, blonde, five-foot-two bundle of North Pole energy who knows your kids' names before she knocks. She'll sit on the floor, do all the voices, and leave them whispering about it for weeks.</p>
+      <span class="tag">For ages 0 to 10</span>
     </div>
     <ol class="timeline">
       <li><b>The knock</b><span>Bells first, then a knock. The elf asks for the kids by name and explains that Santa sent them down early.</span></li>
@@ -298,6 +334,65 @@ h1 em{color:var(--gold)}
       <li><b>The photo</b><span>Elf and family together by the tree. We'll take it on your phone so it's yours right away.</span></li>
       <li><b>Goodbye, until next year</b><span>A reminder to be in bed early on Christmas Eve, a wave from the driveway, and gone.</span></li>
     </ol>
+  </div>
+</section>
+
+
+<section class="story" id="story">
+  <div class="wrap">
+    <div class="story-head">
+      <p class="eyebrow">Picture the evening</p>
+      <h2>What it looks like <em>from the couch.</em></h2>
+      <p class="lede">Pajamas on, lights low, and a knock at the door.</p>
+    </div>
+    <div class="pages">
+      <figure class="page" style="--tilt:-2deg">
+        <svg viewBox="0 0 400 300" role="img" aria-label="An elf with a sack over her shoulder and a storybook in hand steps through the front door, two kids peeking from behind her.">
+          <rect width="400" height="300" fill="#2B2420"/><rect x="0" y="220" width="400" height="80" fill="#8B5A2B"/><path d="M0 232h400M0 252h400M0 272h400" stroke="#6E4520" stroke-width="1.5"/>
+          <rect x="130" y="30" width="140" height="200" rx="6" fill="#5C3A18"/><rect x="142" y="42" width="116" height="176" rx="4" fill="#14213D"/>
+          <circle cx="200" cy="80" r="16" fill="#E9B949" opacity=".9"/><g fill="#FFF6E6"><circle cx="160" cy="60" r="1.5"/><circle cx="235" cy="70" r="1.2"/><circle cx="250" cy="110" r="1.6"/><circle cx="152" cy="130" r="1.2"/></g>
+          <circle cx="200" cy="52" r="14" fill="#1E6B4B"/><circle cx="200" cy="52" r="4" fill="#C8283A"/>
+          <g transform="translate(60 150)" fill="none" stroke="#E9B949" stroke-width="2"><circle r="3"/><circle cx="18" cy="-10" r="3"/><circle cx="36" cy="-2" r="3"/></g>
+          <path d="M248 150c30-10 60 10 56 50s-40 40-60 30z" fill="#2A2118"/><path d="M248 150c30-10 60 10 56 50" fill="none" stroke="#4B4038" stroke-width="3"/>
+          <g transform="translate(150 70) scale(1.0)"><use href="#elf" width="100" height="160"/></g>
+          <rect x="128" y="160" width="34" height="42" rx="3" fill="#C8283A" transform="rotate(-8 145 181)"/><rect x="134" y="166" width="22" height="30" rx="2" fill="#E9B949" transform="rotate(-8 145 181)"/>
+          <g transform="translate(296 176) scale(.75)" style="color:#B8D4F0"><use href="#kid" width="60" height="90"/></g>
+          <g transform="translate(334 190) scale(.6)" style="color:#C8283A"><use href="#kid" width="60" height="90"/></g>
+          <text x="20" y="40" font-family="Caveat, cursive" font-size="26" fill="#E9B949">jingle jingle</text>
+        </svg>
+        <figcaption><b>The knock</b><span>Bells first. Then the door.</span></figcaption>
+      </figure>
+      <figure class="page" style="--tilt:1.5deg">
+        <svg viewBox="0 0 400 300" role="img" aria-label="The elf sits on a couch reading a Christmas book aloud to four children in polka-dot pajamas.">
+          <rect width="400" height="300" fill="#3B2A22"/><rect y="230" width="400" height="70" fill="#5C4030"/>
+          <rect x="20" y="120" width="360" height="120" rx="22" fill="#A8683A"/><rect x="30" y="100" width="340" height="50" rx="18" fill="#B87A48"/><rect x="20" y="170" width="360" height="60" rx="14" fill="#C58A54"/>
+          <rect x="300" y="40" width="60" height="110" rx="4" fill="#1E6B4B"/><g fill="#E9B949"><circle cx="320" cy="70" r="4"/><circle cx="345" cy="95" r="4"/><circle cx="325" cy="125" r="4"/></g><rect x="326" y="150" width="8" height="18" fill="#8B5A2B"/>
+          <path d="M330 40l-30 110h60z" fill="#1E6B4B"/><g fill="#C8283A"><circle cx="322" cy="90" r="5"/><circle cx="340" cy="118" r="5"/><circle cx="330" cy="62" r="4"/></g><g fill="#E9B949"><circle cx="340" cy="80" r="4"/><circle cx="318" cy="130" r="4"/></g><path d="M330 36l4 8-4 2-4-2z" fill="#E9B949"/>
+          <g transform="translate(60 118) scale(.82)" style="color:#C8283A"><use href="#kid" width="60" height="90"/><rect x="16" y="40" width="28" height="36" rx="10" fill="url(#dots)"/></g>
+          <g transform="translate(110 124) scale(.74)" style="color:#1E6B4B"><use href="#kid" width="60" height="90"/><rect x="16" y="40" width="28" height="36" rx="10" fill="url(#dots)"/></g>
+          <g transform="translate(160 106)"><use href="#elf" width="100" height="160"/></g>
+          <g transform="translate(262 118) scale(.8)" style="color:#C8283A"><use href="#kid" width="60" height="90"/><rect x="16" y="40" width="28" height="36" rx="10" fill="url(#plaid)"/></g>
+          <g transform="translate(300 128) scale(.68)" style="color:#C8283A"><use href="#kid" width="60" height="90"/><rect x="16" y="40" width="28" height="36" rx="10" fill="url(#dots)"/></g>
+          <g transform="translate(186 196) rotate(-10)"><rect width="52" height="38" rx="3" fill="#C8283A"/><rect x="4" y="4" width="22" height="30" fill="#FFF6E6"/><rect x="26" y="4" width="22" height="30" fill="#FFF6E6"/><path d="M8 12h14M8 18h14M8 24h10M30 12h14M30 18h14M30 24h10" stroke="#9A8C7C" stroke-width="1.5"/></g>
+          <text x="22" y="48" font-family="Caveat, cursive" font-size="26" fill="#E9B949">&#8216;Twas the night...</text>
+        </svg>
+        <figcaption><b>Story time</b><span>Two books, all the voices.</span></figcaption>
+      </figure>
+      <figure class="page" style="--tilt:-1deg">
+        <svg viewBox="0 0 400 300" role="img" aria-label="A child hugs the elf beside a wrapped gift from Santa under the Christmas tree.">
+          <rect width="400" height="300" fill="#1B2A55"/><rect y="236" width="400" height="64" fill="#8B5A2B"/>
+          <g fill="#FFF6E6"><circle cx="40" cy="40" r="1.6"/><circle cx="90" cy="24" r="1.2"/><circle cx="360" cy="50" r="1.6"/><circle cx="330" cy="20" r="1.2"/><circle cx="60" cy="90" r="1.2"/></g>
+          <path d="M80 60l-50 150h100z" fill="#1E6B4B"/><path d="M80 90l-36 112h72z" fill="#2E8A62" opacity=".6"/><g fill="#C8283A"><circle cx="70" cy="120" r="5"/><circle cx="96" cy="160" r="5"/><circle cx="60" cy="190" r="5"/></g><g fill="#E9B949"><circle cx="92" cy="130" r="4"/><circle cx="56" cy="160" r="4"/><circle cx="100" cy="196" r="4"/></g><path d="M80 52l6 10-6 4-6-4z" fill="#E9B949"/><rect x="74" y="210" width="12" height="26" fill="#5C3A18"/>
+          <g transform="translate(120 190)"><rect width="56" height="46" rx="4" fill="#C8283A"/><rect x="-3" y="-8" width="62" height="14" rx="3" fill="#9E1B2B"/><rect x="24" y="-8" width="8" height="54" fill="#E9B949"/><path d="M28-8c-6-12-18-12-18-4s12 6 18 4zm0 0c6-12 18-12 18-4s-12 6-18 4z" fill="none" stroke="#E9B949" stroke-width="4"/><rect x="6" y="14" width="22" height="14" rx="2" fill="#FFF6E6" transform="rotate(-6 17 21)"/></g>
+          <g transform="translate(222 82) scale(1.0)"><use href="#elf" width="100" height="160"/></g>
+          <g transform="translate(206 128) scale(.95) rotate(8)" style="color:#C8283A"><use href="#kid" width="60" height="90"/><rect x="16" y="40" width="28" height="36" rx="10" fill="url(#dots)"/></g>
+          <path d="M240 150c-10-6-24 2-26 12 6 4 18 4 26-12z" fill="#1E6B4B"/>
+          <text x="282" y="44" font-family="Caveat, cursive" font-size="26" fill="#E9B949">from Santa</text>
+          <path d="M300 60q-10-12 0-16q8-4 12 4q4-8 12-4q10 4 0 16l-12 10z" fill="#C8283A"/>
+        </svg>
+        <figcaption><b>A gift, and a hug</b><span>Wrapped at the North Pole.</span></figcaption>
+      </figure>
+    </div>
   </div>
 </section>
 
@@ -335,7 +430,7 @@ h1 em{color:var(--gold)}
         <li>Two Christmas stories, read aloud</li>
         <li>Your gift wrapped and delivered from Santa, with a handwritten note</li>
         <li>Family photo on your phone</li>
-        <li>Gilbert, Chandler, Queen Creek, Mesa and Scottsdale</li>
+        <li>Anywhere in the East Valley</li>
       </ul>
       <p class="hand">Weeknights &amp; weekends, Thanksgiving to Dec 23</p>
     </div>
@@ -376,7 +471,7 @@ h1 em{color:var(--gold)}
           </div>
         </fieldset>
         <div class="fields">
-          <div class="field"><label for="town">Your town</label><select id="town"><option>Gilbert</option><option>Chandler</option><option>Queen Creek</option><option>Mesa</option><option>Scottsdale</option><option>Somewhere nearby</option></select></div>
+          <div class="field"><label for="town">Your city or neighborhood</label><input type="text" id="town" placeholder="Gilbert, near Val Vista and Warner" autocomplete="address-level2"></div>
           <div class="field"><label for="time">Best time of day</label><select id="time"><option>Early evening (5 to 7)</option><option>After dinner (7 to 8:30)</option><option>Weekend afternoon</option><option>Flexible</option></select></div>
         </div>
         <fieldset>
@@ -416,9 +511,9 @@ h1 em{color:var(--gold)}
       <details open><summary>Will my kids believe it?</summary><p>That's the whole job. The elf arrives in full North Pole gear, knows the kids by name, and never breaks character. For the believers it's magic; for the older skeptics it's still a very fun evening.</p></details>
       <details><summary>How does the gift work?</summary><p>Most parents hand us the gift at the door (or leave it in a bag on the porch) a few minutes before the visit. We wrap it in North Pole paper and the elf delivers it with a note from Santa. If you'd rather we shop, give us a budget and a few hints.</p></details>
       <details><summary>What if my child is shy, or cries?</summary><p>It happens, especially with the littlest ones. Our elves are patient and good at reading the room. They'll slow down, sit on the floor, and let the kids come to them. The stories usually do the rest.</p></details>
-      <details><summary>Where do you go?</summary><p>Gilbert, Chandler, Queen Creek, Mesa and Scottsdale. If you're just outside those, write to us anyway and we'll see what the sleigh can do.</p></details>
+      <details><summary>Where do you go?</summary><p>All across the East Valley. If you're a little outside it, write to us anyway and we'll see what the sleigh can do.</p></details>
       <details><summary>Can we book for a party or several families?</summary><p>Yes. Tell us how many kids and we'll quote a longer visit with more stories and a gift for each child.</p></details>
-      <details><summary>What about the dog?</summary><p>The elf loves dogs. If yours loves strangers with bells on, great. If not, a few minutes in another room keeps story time calm.</p></details>
+      <details><summary>What about the dog?</summary><p>Dogs are welcome at story time. Our elf is small, and some dogs get very excited about a stranger with bells on, so please have your dog leashed or held when she comes through the door and whenever they're in the same room. If your dog is a jumper, a few minutes in another room keeps everyone safe and story time calm.</p></details>
     </div>
   </div>
 </section>
@@ -428,12 +523,12 @@ h1 em{color:var(--gold)}
   <div class="wrap foot-in">
     <div>
       <a class="brand" href="#top" style="margin-bottom:14px"><svg aria-hidden="true"><use href="#i-hat"/></svg>Elf Visit</a>
-      <p>Elf visits for families in Gilbert, Chandler, Queen Creek, Mesa and Scottsdale, Arizona. Thanksgiving to Christmas Eve.</p>
+      <p>Elf visits for families across the East Valley, Arizona. Thanksgiving to Christmas Eve.</p>
     </div>
     <div><h4>Visit</h4><ul><li><a href="#how">How it works</a></li><li><a href="#visit">The visit</a></li><li><a href="#books">Stories</a></li><li><a href="#price">Pricing</a></li></ul></div>
     <div><h4>Say hello</h4><ul><li><a href="mailto:hello@elfvisit.com">hello@elfvisit.com</a></li><li><a href="#book">Book a visit</a></li><li><a href="#faq">Questions</a></li></ul></div>
   </div>
-  <div class="wrap foot-bottom"><span>© 2026 Elf Visit · Gilbert, Arizona</span><span>Snow not guaranteed outside this website.</span></div>
+  <div class="wrap foot-bottom"><span>© 2026 Elf Visit · East Valley, Arizona</span><span>Snow not guaranteed outside this website.</span></div>
 </footer>
 
 <script>
@@ -531,7 +626,7 @@ h1 em{color:var(--gold)}
     var shop=radio('gift')==='shop';
     giftLabel.textContent=shop?'Budget, and what they are into':'What is Santa bringing?';
     giftText.placeholder=shop?'About $40 each. Dinosaurs for Jack, drawing for Mia.':'A dinosaur dig kit for Jack, a sketchbook for Mia';
-    var k=val('kids')||'(our kids)', when=radio('when'), town=val('town'), time=val('time'), p=picked(), g=val('giftText'), n=val('notes'), who=val('parent'), em=val('email');
+    var k=val('kids')||'(our kids)', when=radio('when'), town=val('town')||'the East Valley', time=val('time'), p=picked(), g=val('giftText'), n=val('notes'), who=val('parent'), em=val('email');
     var lines=['We would love an elf visit for '+k+' in '+town+'.',
       'Best timing: '+when+', '+time.toLowerCase()+'.',
       'Stories: '+(p.length?p.join(' and '):'(we are still choosing)')+'.',
