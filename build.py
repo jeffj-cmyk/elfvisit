@@ -9,7 +9,7 @@ icon = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><rect width
         '<path d="M8 34c6-18 14-26 26-28 4 6 2 12-2 16" fill="#C8283A"/><path d="M6 33h30a4 4 0 0 1 0 8H6a4 4 0 0 1 0-8z" fill="#FFF6E6"/>'
         '<circle cx="35" cy="7" r="5" fill="#E9B949"/></svg>')
 desc = ("Elf Visit: a North Pole elf comes to your home in Gilbert, Chandler, Queen Creek, Mesa or Scottsdale, "
-        "reads two Christmas stories and delivers a gift from Santa. Thanksgiving to Christmas Eve.")
+        "reads two Christmas stories and delivers a gift from Santa. November 1 to Christmas Eve.")
 
 doc = f"""<!doctype html>
 <html lang="en">
